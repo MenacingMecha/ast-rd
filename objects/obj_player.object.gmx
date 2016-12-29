@@ -28,6 +28,9 @@
             <string>/// Changing direction to face upwards - feels more natural than facing right
 direction = 90;
 image_angle = 90;
+
+respawn_timer = 0;
+respawn_invul = global.player_respawn_invul;
 </string>
           </argument>
         </arguments>
@@ -102,6 +105,31 @@ if(key_fire == 1)
         bullet.image_angle = image_angle;
         bullet.speed = 5;
     }
+}
+
+if(respawn_invul == true)
+{
+    // Toggle invisibilty
+    if(respawn_timer % 10 == 0)
+    {
+        if(visible == true)
+        {
+            visible = false;
+        }
+        else
+        {
+            visible = true;
+        }
+    }
+    
+    // End respawn invunerability if timer has expired
+    if(respawn_timer == 250)
+    {
+        respawn_invul = false;
+    }
+    
+    // Increment timer
+    respawn_timer += 1;
 }
 </string>
           </argument>

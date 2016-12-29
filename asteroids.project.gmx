@@ -57,9 +57,10 @@
     <room>rooms\rm_game</room>
     <room>rooms\rm_options</room>
   </rooms>
-  <constants number="2">
+  <constants number="3">
     <constant name="MENU_TEXT_GUTTER">16</constant>
     <constant name="SPR_LIVES_GUTTER">9</constant>
+    <constant name="DEAD_PLAYER_PIECE_MIN_ROTATION_RATE">0.3</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

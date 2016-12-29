@@ -119,46 +119,58 @@ instance_destroy()
           <argument>
             <kind>1</kind>
             <string>/// Player death
-var random_angle = irandom(360);
-var o;
 
-o = instance_create(x,y,obj_dead_player);
-o.angle = 45 + random_angle
-o.image_index = 1;
-
-o = instance_create(x,y,obj_dead_player);
-o.angle = 90 + random_angle;
-o.image_index = 1;
-
-o = instance_create(x,y,obj_dead_player);
-o.angle = 180 + random_angle;
-o.image_index = 0;
-
-o = instance_create(x,y,obj_dead_player);
-o.angle = 270 + random_angle;
-o.image_index = 0;
-
-with (obj_dead_player)
+// Check if player can actually die
+if(respawn_invul == false)
 {
-    direction = angle;
-    image_angle = angle;
-    speed = 1.5;
-    image_speed = 0;
+    // Create broken ship parts
+    var random_angle = irandom(360);
+    var o;
+    
+    for(var i = 1; i &lt;= 4; i++)
+    {
+        o = instance_create(x,y,obj_dead_player);
+        o.angle = (i * 90) + irandom(45) + random_angle;
+        o.rotation_rate = random(5) + DEAD_PLAYER_PIECE_MIN_ROTATION_RATE;
+        
+        // Two will be the larger piece, two will be the smaller piece
+        if(i &gt; 2)
+        {
+            o.image_index = 1;
+        }
+        else
+        {
+            o.image_index = 0;
+        }
+    }
+    
+    // Set some variables that will all be the same for each ship piece
+    with (obj_dead_player)
+    {
+        direction = angle;
+        image_angle = angle;
+        speed = 1.5;
+        image_speed = 0;
+    }
+    
+    audio_play_sound(snd_player_explode,10,0);
+    
+    // Destroy the player (code applies to other not self!)
+    instance_destroy();
+    
+    // Respawn if the player still has lives remaining, game over if they don't
+    if (lives &gt; 0)
+    {
+        lives -= 1;
+        instance_create(room_width/2, room_height/2, obj_player);
+        global.player_respawn_invul = true;
+    }
+    else
+    {
+        global.player_respawn_invul = false;
+        instance_create(0,0,obj_game_over);
+    }
 }
-
-audio_play_sound(snd_player_explode,10,0);
-
-if (lives &gt; 0)
-{
-    lives -= 1;
-    instance_create(room_width/2, room_height/2, obj_player);
-}
-else
-{
-instance_create(0,0,obj_game_over);
-}
-
-instance_destroy();
 </string>
           </argument>
         </arguments>
