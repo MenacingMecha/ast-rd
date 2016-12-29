@@ -50,6 +50,8 @@ global.draw_title_screen = true;
 
 // Defining timer for splash screen message
 splash_screen_timer = 0;
+
+global.player_respawn_invul = false;
 </string>
           </argument>
         </arguments>
