@@ -52,6 +52,7 @@ global.draw_title_screen = true;
 splash_screen_timer = 0;
 
 global.player_respawn_invul = false;
+global.smooth_scaling = false;
 </string>
           </argument>
         </arguments>

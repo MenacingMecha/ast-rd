@@ -32,8 +32,9 @@ event_inherited();
 
 // Menu options
 menu[0] = "Scaling";
-menu[1] = "Fullscreen";
-menu[2] = "Back";
+menu[1] = "Smooth/Sharp Scaling";
+menu[2] = "Fullscreen";
+menu[3] = "Back";
 </string>
           </argument>
         </arguments>
