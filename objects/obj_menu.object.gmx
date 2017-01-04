@@ -75,9 +75,6 @@ if(array_length_1d(menu) &gt; 1)
 // Selecting the current option
 // Get user input
 push = max(keyboard_check_released(vk_enter),keyboard_check_released(ord("Z")),gamepad_button_check_pressed(0,gp_face1),gamepad_button_check_pressed(0,gp_start),0);
-
-// menu_to_use is defined by the children
-if (push == 1) scr_menu(menu_to_use);
 </string>
           </argument>
         </arguments>
@@ -101,6 +98,10 @@ if (push == 1) scr_menu(menu_to_use);
           <argument>
             <kind>1</kind>
             <string>/// Drawing the menu
+
+// menu_to_use is defined by the children
+if (push == 1) scr_menu(menu_to_use);
+
 
 // Draw title screen sprite (but not in cases such as the options menu)
 if(global.draw_title_screen == true)
