@@ -30,6 +30,8 @@
 // Inherit the variable definitions from the parent
 event_inherited();
 
+global.draw_title_screen = false;
+
 // Menu options
 // Options that can change are defined in the step event
 menu[3] = "Back";

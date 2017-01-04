@@ -30,6 +30,8 @@
 // Inherit the variable definitions from the parent
 event_inherited();
 
+global.draw_title_screen = true;
+
 // Menu options
 menu[0] = "Start Game";
 menu[1] = "Options";
