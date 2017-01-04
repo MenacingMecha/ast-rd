@@ -126,7 +126,7 @@ if(global.draw_title_screen == true)
     draw_sprite(spr_title_screen, 0, room_width / 2, (room_height / 2) - 40);
     
     // Version number in the bottom right corner
-    draw_text(room_width, room_height - 10, VERSION_NUMBER);
+    draw_text(room_width - 2, room_height - 10, VERSION_NUMBER);
 }
 
 // Reset halign back to left for the rest of the text
