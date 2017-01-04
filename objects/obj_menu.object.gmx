@@ -72,12 +72,18 @@ if(array_length_1d(menu) &gt; 1)
 }
 
 
-// Selecting the current option
+// Selecting the current option, or go back to the previous menu
+// Make sure the user isn't trying to go back to the previous menu
+if(global.draw_title_screen == false) &amp;&amp; keyboard_check_pressed(ord("X"))
+{
+    room_goto(rm_menu);
+    audio_play_sound(snd_menu_select,0,0);
+}
+
 // Get user input
 push = max(keyboard_check_released(vk_enter),keyboard_check_released(ord("Z")),gamepad_button_check_pressed(0,gp_face1),gamepad_button_check_pressed(0,gp_start),0);
 
-// menu_to_use is defined by the children
-if (push == 1) scr_menu(menu_to_use);
+scr_volume_control();
 </string>
           </argument>
         </arguments>
@@ -102,16 +108,29 @@ if (push == 1) scr_menu(menu_to_use);
             <kind>1</kind>
             <string>/// Drawing the menu
 
-// Draw title screen sprite (but not in cases such as the options menu)
-if(global.draw_title_screen == true)
+// menu_to_use is defined by the children
+if(push == 1)
 {
-    draw_sprite(spr_title_screen, 0, room_width / 2, (room_height / 2) - 40);
+    scr_menu(menu_to_use);
 }
 
 // Setting up the font
-draw_set_halign(fa_left);
+draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
 draw_set_color(c_white);
+
+// Draw title screen sprite (but not in cases such as the options menu)
+if(global.draw_title_screen == true)
+{
+    // Logo
+    draw_sprite(spr_title_screen, 0, room_width / 2, (room_height / 2) - 40);
+    
+    // Version number in the bottom right corner
+    draw_text(room_width - 2, room_height - 10, VERSION_NUMBER);
+}
+
+// Reset halign back to left for the rest of the text
+draw_set_halign(fa_left);
 
 // Loop through menu array, drawing every option, taking the MENU_TEXT_GUTTER space into consideration
 // Note that the starting position depends on where the object is placed in the room

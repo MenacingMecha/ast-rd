@@ -30,10 +30,11 @@
 // Inherit the variable definitions from the parent
 event_inherited();
 
+global.draw_title_screen = false;
+
 // Menu options
-menu[0] = "Scaling";
-menu[1] = "Fullscreen";
-menu[2] = "Back";
+// Options that can change are defined in the step event
+menu[3] = "Back";
 </string>
           </argument>
         </arguments>
@@ -60,6 +61,42 @@ menu[2] = "Back";
 
 event_inherited();
 menu_to_use = "options";
+
+// Reassign menu options that can change
+if(!window_get_fullscreen())
+{
+    var b = window_get_height();
+    for(var i = 1; i &lt;= array_length_1d(global.window_scalev); i += 1)
+    {
+        if(b == global.window_scalev[i])
+        {
+            menu[0] = string(i) + "x Scale";
+            break;
+        }
+    }
+}
+else
+{
+    menu[0] = "Only in window"
+}
+
+if(global.smooth_scaling)
+{
+    menu[1] = "Sharp Scaling";
+}
+else
+{
+    menu[1] = "Smooth Scaling";
+}
+
+if(global.in_fullscreen)
+{
+    menu[2] = "Windowed";
+}
+else
+{
+    menu[2] = "Fullscreen";
+}
 </string>
           </argument>
         </arguments>

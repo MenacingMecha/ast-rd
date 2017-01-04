@@ -52,6 +52,11 @@ global.draw_title_screen = true;
 splash_screen_timer = 0;
 
 global.player_respawn_invul = false;
+global.smooth_scaling = false;
+global.in_fullscreen = false;
+
+global.volume_master = 0.5;
+audio_master_gain(global.volume_master);
 </string>
           </argument>
         </arguments>

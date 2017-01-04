@@ -26,6 +26,7 @@
     <script>scripts\scr_menu.gml</script>
     <script>scripts\scr_enemy_destroy.gml</script>
     <script>scripts\scr_fullscreen_toggle.gml</script>
+    <script>scripts\scr_volume_control.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -57,10 +58,11 @@
     <room>rooms\rm_game</room>
     <room>rooms\rm_options</room>
   </rooms>
-  <constants number="3">
+  <constants number="4">
     <constant name="MENU_TEXT_GUTTER">16</constant>
     <constant name="SPR_LIVES_GUTTER">9</constant>
     <constant name="DEAD_PLAYER_PIECE_MIN_ROTATION_RATE">0.3</constant>
+    <constant name="VERSION_NUMBER">"v1.1.0"</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
