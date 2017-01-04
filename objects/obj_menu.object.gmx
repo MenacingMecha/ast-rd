@@ -72,7 +72,14 @@ if(array_length_1d(menu) &gt; 1)
 }
 
 
-// Selecting the current option
+// Selecting the current option, or go back to the previous menu
+// Make sure the user isn't trying to go back to the previous menu
+if(global.draw_title_screen == false) &amp;&amp; keyboard_check_pressed(ord("X"))
+{
+    room_goto(rm_menu);
+    audio_play_sound(snd_menu_select,0,0);
+}
+
 // Get user input
 push = max(keyboard_check_released(vk_enter),keyboard_check_released(ord("Z")),gamepad_button_check_pressed(0,gp_face1),gamepad_button_check_pressed(0,gp_start),0);
 
@@ -102,7 +109,10 @@ scr_volume_control();
             <string>/// Drawing the menu
 
 // menu_to_use is defined by the children
-if (push == 1) scr_menu(menu_to_use);
+if(push == 1)
+{
+    scr_menu(menu_to_use);
+}
 
 // Setting up the font
 draw_set_halign(fa_right);
